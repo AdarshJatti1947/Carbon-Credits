@@ -1,0 +1,169 @@
+.status-button {
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 250px;
+  }
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /*background: url(/Users/adarshjatti/Downloads/laurel/dist/images/BLUE.jpeg);*/
+  background-repeat: no-repeat;
+  background-size: 2000px 1000px;
+  font-family: 'Open Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+table {
+  background: #e2dae1;
+  border-radius: 0.75em;
+  border-collapse: collapse;
+  margin: 1em;
+  position: relative;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #10100f;
+  font-size: 0.95em;
+  font-weight: 800;
+  padding: 1em 1em;
+  text-align: left;
+  border-radius: 10000px;
+}
+td {
+  color: #2a2626;
+  font-weight: 400;
+  padding: 1em 1em;
+  border-radius: 1000px;
+  width: 10px;
+  word-break: break-all; /* Allow long words to break and wrap */
+  
+  
+}
+.disabled td {
+  color: #202121;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #b4b8b9;
+}
+
+/* hhhhhhhhhhhhhh*/
+
+
+.search-container {
+  position: relative; /* Set position to absolute */
+  top: 20px; /* Adjust the top position */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center horizontally */
+  text-align: center;
+  border-radius: 2000px;
+  margin-bottom: 20px;
+
+}
+.search-form {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  display: inline-block;
+}
+.search-input {
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  width: 500px; /* Adjust the width as needed */
+}
+.search-button {
+  padding: 10px 20px;
+  background-color: #101010;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-right: 10px
+}
+.search-button:hover {
+  background-color: #0056b3;
+}
+.button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px; /* Adjust padding as needed */
+  background-color: #4CAF50; /* Green */
+  color: white; /* Text color */
+  border: none; /* Remove button border */
+  border-radius: 25px; /* Rounder border */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow */
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
+  cursor: pointer; /* Show pointer cursor on hover */
+  font-family: Arial, sans-serif; /* Use a sans-serif font */
+}
+
+/* Additional styles for button hover effect */
+.button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+/* text box here*/
+
+.textbox-container {
+  position: relative;
+  bottom: 20px; /* Adjust distance from the bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.text-box {
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px 5px;
+  display: inline-block;
+}
+
+.textbox::placeholder {
+  color: #a8a8a8; /* Placeholder text color */
+}
+
+  .search-box
+  {
+      padding: 10px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      outline: none;
+      width: 350px; /* Adjust the width as needed */
+  }
+
+
+.textbox:focus {
+  border-color: #4CAF50; /* Border color on focus */
+  box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Shadow on focus */
+}
+
+
+
+
+

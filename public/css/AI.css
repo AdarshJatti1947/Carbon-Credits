@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('/Users/adarshjatti/Downloads/laurel/dist/images/bg.jpg');
+    margin: 0;
+    padding: 0;
+    position: relative; /* Set position to relative */
+    min-height: 100vh;
+}
+.search-container {
+    position: absolute; /* Set position to absolute */
+    top: 20px; /* Adjust the top position */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    text-align: center;
+    border-radius: 2000px;
+}
+.search-form {
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    display: inline-block;
+}
+.search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    width: 500px; /* Adjust the width as needed */
+}
+.search-button {
+    padding: 10px 20px;
+    background-color: #101010;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+.search-button:hover {
+    background-color: #0056b3;
+}
+.button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #4CAF50; /* Green */
+    color: white; /* Text color */
+    border: none; /* Remove button border */
+    border-radius: 25px; /* Rounder border */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add shadow */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    cursor: pointer; /* Show pointer cursor on hover */
+    font-family: Arial, sans-serif; /* Use a sans-serif font */
+  }
+  
+  /* Additional styles for button hover effect */
+  .button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+
+/* text box here*/
+
+.textbox-container {
+    position: absolute;
+    bottom: 20px; /* Adjust distance from the bottom */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .text-box {
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+    display: inline-block;
+    margin-right: 10px;
+}
+  
+  .textbox::placeholder {
+    color: #a8a8a8; /* Placeholder text color */
+  }
+
+    .search-box
+    {
+        padding: 10px;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        outline: none;
+        width: 250px; /* Adjust the width as needed */
+    }
+  
+  
+  .textbox:focus {
+    border-color: #4CAF50; /* Border color on focus */
+    box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Shadow on focus */
+  }
+  
+  

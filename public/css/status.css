@@ -1,0 +1,55 @@
+.status-button {
+    background-color: #04AA6D; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 250px;
+  }
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(/Users/adarshjatti/Downloads/laurel/dist/images/BLUE.jpeg);
+  background-repeat: no-repeat;
+  background-size: 2000px 1000px;
+  font-family: 'Open Sans', sans-serif;
+}
+table {
+  background: #e2dae1;
+  border-radius: 0.75em;
+  border-collapse: collapse;
+  margin: 1em;
+}
+th {
+  border-bottom: 1px solid #364043;
+  color: #10100f;
+  font-size: 0.95em;
+  font-weight: 800;
+  padding: 1em 1em;
+  text-align: left;
+  border-radius: 10000px;
+}
+td {
+  color: #2a2626;
+  font-weight: 400;
+  padding: 1em 1em;
+  border-radius: 1000px;
+}
+.disabled td {
+  color: #202121;
+}
+tbody tr {
+  transition: background 0.25s ease;
+}
+tbody tr:hover {
+  background: #b4b8b9;
+}

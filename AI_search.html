@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Users/adarshjatti/Downloads/laurel/dist/css/AI.css">
+    <link rel="stylesheet" href="/Users/adarshjatti/Downloads/laurel/dist/css/table.css">
+
+    
+    
+    
+    <title>Cool Search Bar</title>
+    <script>
+        function show_projects()
+        {
+            for(i=0;i<5;i++)
+            {
+                let user = document.createElement("tr");
+                user.classList.add("userMsg");
+
+                let Id = document.createElement("th");
+                Id.innerHTML="AAAAAAAAAAAA"//x[i].project_description
+                Id.classList.add("text1");
+
+                let name = document.createElement("th");
+                name.innerHTML="Aarav gggggggggggggggggg"//x[i].project_description
+                name.classList.add("text1");
+
+                let project_description = document.createElement("th");
+                project_description.innerHTML="Adarsh"//x[i].project_description
+                project_description.classList.add("description");
+
+                let credits = document.createElement("th");
+                credits.innerHTML="Venkat"//x[i].credits
+                credits.classList.add("description");
+
+                let price_per_credit = document.createElement("th");
+                price_per_credit.innerHTML="Jaswanth"//x[i].price_per_credit
+                price_per_credit.classList.add("description");
+
+                let publickeyaddress = document.createElement("th");
+                publickeyaddress.innerHTML="Gourav"//x[i].publickeyaddress
+                publickeyaddress.classList.add("description");
+
+                let organisation = document.createElement("th");
+                organisation.innerHTML="Anubhav"//x[i].organisation
+                organisation.classList.add("description");
+
+                let website_url = document.createElement("th");
+                website_url.innerHTML="Chetan"//x[i].website_url
+                website_url.classList.add("description");
+
+                let tablediv = document.getElementsByClassName("test1"); 
+                
+                user.appendChild(Id);
+                user.appendChild(name);
+                user.appendChild(project_description);
+                user.appendChild(credits);
+                user.appendChild(price_per_credit);
+                user.appendChild(publickeyaddress);
+                user.appendChild(organisation);
+                user.appendChild(website_url);
+
+                
+
+
+                tablediv[0].appendChild(user);
+                ind1 = 1;
+
+
+            }
+            
+        }
+    
+    </script>
+</head>
+<body>
+    <div class="search-container">
+        <div class="search-form">
+            <input type="text" class="search-input" name="query" placeholder="Enter your search query">
+            <button type="submit" class="search-button" onclick="show_projects()">Search</button>
+            
+        </div>
+        <div>
+            <table class="test1">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Project Description</th>
+                        <th>Credits</th>
+                        <th>Price Per Credit</th>
+                        <th>Public Key Address</th>
+                        <th>Organisation</th>
+                        <th>Website URL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table content will be dynamically generated here -->
+                    <br>
+                    <br>
+                </tbody>
+            </table>
+        </div>       
+    </div>
+
+    <button class="button">Click to Check the Status of Credit Approval</button>
+
+
+    
+
+
+
+    
+    
+
+   
+
+
+</body>
+<body>
+    <div class="textbox-container">
+        <div class="text-box">
+
+            publickey: <input type="text" class="search-box" name="query" placeholder="Enter ">
+        </div>
+    
+    
+   
+        <div class="text-box">
+            Credits: <input type="text" class="search-box" name="query1" placeholder="Enter ">
+        </div>
+
+        <button type="submit" class="search-button" onclick="">Submit</button>
+
+    </div>
+    
+    
+</body>
+</html>

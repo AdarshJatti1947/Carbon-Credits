@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="/css/Audit.css">
+    <link rel="stylesheet" href="/css/Audit2.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+         $(document).ready(function (){
+            $("#logout").click(function (){
+            $.post(
+            "http://localhost:3000/creditHolder/logout",
+            {
+              
+            },
+            function (resp, status, xhr) {
+              if(resp.status == 200)
+              {
+                  window.location.href = "http://localhost:3000/";
+              }
+              else
+              {
+                  alert(resp.data.message);
+              }
+            }
+          );
+        })
+
+        $("#submit").click(function () {
+            $.post(
+            "http://localhost:3000/creditHolder/proposal",
+            {
+                projectName: document.getElementById("name").value,
+                organisation: document.getElementById("org").value,
+                projectDescrption: document.getElementById("description").value,
+                projectSector: document.getElementById("sector").value,
+                projectLocation: document.getElementById("location").value,
+                projectWebsiteURL: document.getElementById("url").value,
+                pricePerCredit: document.getElementById("price").value,
+            },
+            function (resp, status, xhr) {
+              if(resp.status == 200)
+              {
+                  alert(resp.data.message);
+              }
+              else
+              {
+                  alert(resp.data.message);
+              }
+            }
+          );
+        })
+
+        $("#search").click(function (){
+            window.location.href = "http://localhost:3000/creditHolder/orders"
+            
+        })
+
+
+        $("#transfer").click(function (){
+            window.location.href = "http://localhost:3000/creditHolder/transfers"
+            
+        })
+
+    });
+    </script>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+          <h1>Welcome <%=name%></h1>
+          <button class="logout-btn" id="logout">Logout</button>
+        </div>
+        <div class="content">
+            <p>Fill the project Proposal form. After submitting the form an official will verify your project's details and distribute carbon credits to your registered public key address</p>
+        </div>
+    </div>
+    
+    
+    
+    <!-- Main container -->
+    <div class="container">
+        <h1>Project Proposal Form</h1>
+        <!-- Contact form section -->
+        <div class="contact-box">
+            <!-- Left side of the form -->
+            <div class="container-left">
+                <h3>Fill the Form*</h3>
+                <!-- Form -->
+                <div id="contactForm">
+    
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Project Name*</label>
+                            <input type="text" id="name" placeholder="Electricity" required>
+    
+                        </div>
+                        
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Organisation*</label>
+                            <input type="text" id="org" placeholder="Natural gas" required>
+    
+                        </div>
+                        
+                    </div>
+                    
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Project Description*</label>
+                            <input type="text" id="description" placeholder="Natural gas" required>
+    
+                        </div>
+                        
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Project Sector*</label>
+                            <input type="text" id="sector" placeholder="Petrol/Gasoline" required>
+    
+                        </div>
+                        
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Location*</label>
+                            <input type="text" id="location" placeholder="Barrels of Oi" required>
+    
+                        </div>
+                        
+                    </div>
+
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Price Per Credit*</label>
+                            <input type="number" id="price" placeholder="Barrels of Oi" required>
+    
+                        </div>
+                        
+                    </div>
+                    <div class="input-row">
+                        <div>
+                            <label>Project Website URL*</label>
+                            <input type="url" id="url" placeholder="Enter URL link" required>
+                        </div>
+                    </div>
+
+                    
+                    <button id="submit">Submit</button>
+
+
+                    
+                </div>
+                
+            </div>
+            <!-- Right side with contact information -->
+            
+        </div>
+        
+    </div>
+
+    <div style="text-align: center;">
+        <button id="search">Complete Purchase Requests</button>
+    </div>
+    
+    <br>
+    <div style="text-align: center;">
+        <button id="transfer">Transfer Approved credits</button>
+    </div>
+
+</body>
+
+</html>

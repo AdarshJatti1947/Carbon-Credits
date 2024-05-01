@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/AI.css">
+    <link rel="stylesheet" href="/css/table.css">
+    <title>Cool Search Bar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.4.7/ethers.umd.min.js" integrity="sha512-iH5Dbo1wWpuh7SZSiGdiOowvhZ1rLcw1o7RbkcPmP6RQfQo8EKdri2pVm80ZYZYP1ujQQuI9OvJVZsCsfc2nRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function (){
+        $("#submit").click(function (){
+            $.post(
+            "http://localhost:3000/customer/view-projects",
+            {
+              prompt: document.getElementById("query").value,
+            },
+            function (resp, status, xhr) {
+              if(resp.status == 200)
+              {
+                  show_projects(resp.data.projects);
+              }
+              else
+              {
+                  alert(resp.data.message);
+              }
+            }
+          );
+        })
+
+
+        $("#buy").click(function (){
+            $.post(
+            "http://localhost:3000/customer/buyCredits",
+            {
+              projectId: document.getElementById("project").value,
+              amount: document.getElementById("credits").value
+            },
+            async function (resp, status, xhr) {
+              if(resp.status == 200)
+              {
+                  let permit = await pay(resp.data.paymentInfo);
+                  verify(permit,resp.data.paymentInfo.id)
+              }
+              else
+              {
+                  alert(resp.data.message);
+              }
+            }
+          );
+        })
+
+        $("#tokens").click(function (){
+            window.location.href = "http://localhost:3000/customer/tokens"
+            
+        })
+
+        
+    })
+
+        async function pay(paymentInfo)
+        {
+            try
+            {
+                if(typeof window.ethereum !== 'undefined')
+                {
+                    await window.ethereum.request({method:"eth_requestAccounts"});
+                    let provider = new ethers.providers.Web3Provider(window.ethereum);
+                    let sign = provider.getSigner();
+
+                    let spender = paymentInfo.pkaddress;
+                    let amount = ""+paymentInfo.amount;
+                    amount =  ethers.utils.parseEther(amount);
+
+                    const transaction = await sign.sendTransaction({
+                    to: spender,
+                    value: amount
+                    })
+
+                    const receipt = await transaction.wait();
+                    console.log(receipt);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch(err)
+            {
+                console.log(err);
+                return false;
+            }
+        }
+
+        function verify(permit,purchaseInfo)
+        {
+            if(permit)
+            {
+                $.post(
+                    "http://localhost:3000/customer/verifyPayment",
+                    {
+                    purchaseId: purchaseInfo,
+                    },
+                    function (resp, status, xhr) {
+                    if(resp.status == 200)
+                    {
+                        alert(resp.data.message);
+                    }
+                    else
+                    {
+                        alert(resp.data.message);
+                    }
+                    }
+                );
+            }
+            else
+            {
+                alert("some issue has occured");
+            }
+        }
+
+        function show_projects(projects)
+        {
+
+            let tablediv = document.getElementsByClassName("test1"); 
+            tablediv[0].innerHTML = "";
+
+            let headers = document.createElement("thead");
+
+            let row = document.createElement("tr");
+
+            let title1 = document.createElement("th");
+            title1.innerHTML = "ID";
+
+            let title2 = document.createElement("th");
+            title2.innerHTML = "Name";
+
+            let title3 = document.createElement("th");
+            title3.innerHTML = "Project Description";
+
+            let title4 = document.createElement("th");
+            title4.innerHTML = "Credits";
+
+            let title5 = document.createElement("th");
+            title5.innerHTML = "Price Per Credit";
+
+            let title6 = document.createElement("th");
+            title6.innerHTML = "Organisation";
+
+            let title7 = document.createElement("th");
+            title7.innerHTML = "Website URL";
+
+            row.appendChild(title1);
+            row.appendChild(title2);
+            row.appendChild(title3);
+            row.appendChild(title4);
+            row.appendChild(title5);
+            row.appendChild(title6);
+            row.appendChild(title7);
+
+            headers.appendChild(row);
+            tablediv[0].appendChild(headers);
+
+            for(i=0;i<projects.length;i++)
+            {
+                let user = document.createElement("tr");
+                user.classList.add("userMsg");
+
+                let Id = document.createElement("th");
+                Id.innerHTML=projects[i].id
+                Id.classList.add("text1");
+
+                let name = document.createElement("th");
+                name.innerHTML= projects[i].name
+                name.classList.add("text1");
+
+                let project_description = document.createElement("th");
+                project_description.innerHTML= projects[i].description
+                project_description.classList.add("description");
+
+                let credits = document.createElement("th");
+                credits.innerHTML= projects[i].creditsAvailable
+                credits.classList.add("description");
+
+                let price_per_credit = document.createElement("th");
+                price_per_credit.innerHTML= projects[i].pricePerCredit
+                price_per_credit.classList.add("description");
+
+                let organisation = document.createElement("th");
+                organisation.innerHTML= projects[i].organisation
+                organisation.classList.add("description");
+
+                let website_url = document.createElement("th");
+                website_url.innerHTML= projects[i].webSiteUrl
+                website_url.classList.add("description");
+
+                
+                
+                user.appendChild(Id);
+                user.appendChild(name);
+                user.appendChild(project_description);
+                user.appendChild(credits);
+                user.appendChild(price_per_credit);
+                user.appendChild(organisation);
+                user.appendChild(website_url);
+
+                
+                tablediv[0].appendChild(user);
+                ind1 = 1;
+
+
+            }
+            
+        }
+
+    
+    
+    </script>
+</head>
+<body>
+    <div class="search-container">
+        <div class="search-form">
+            <input type="text" class="search-input" name="query" id="query" placeholder="Enter your search query">
+            <button id="submit" class="search-button" onclick="show_projects()">Search</button>
+            
+        </div>
+        <div>
+            <table class="test1">
+                <tbody>
+                    <!-- Table content will be dynamically generated here -->
+                    <br>
+                    <br>
+                </tbody>
+            </table>
+        </div>       
+    </div>
+
+    <button class="button" id="tokens">Click to Check the Status of Credit Approval</button>
+
+
+    
+
+
+
+    
+    
+
+   
+
+
+</body>
+<body>
+    <div class="textbox-container">
+        <div class="text-box">
+
+            <input type="text" id="project" class="search-box" name="query" placeholder="Enter Project ID ">
+        </div>
+    
+    
+   
+        <div class="text-box">
+            <input type="number" id="credits" class="search-box" name="query1" placeholder="Enter Amount Of Credits">
+        </div>
+
+        <button id="buy" class="search-button" onclick="">Buy</button>
+
+    </div>
+    
+    
+</body>
+</html>

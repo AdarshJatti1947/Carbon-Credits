@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Styling a SignUp Form</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.4.7/ethers.umd.min.js" integrity="sha512-iH5Dbo1wWpuh7SZSiGdiOowvhZ1rLcw1o7RbkcPmP6RQfQo8EKdri2pVm80ZYZYP1ujQQuI9OvJVZsCsfc2nRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="module">
+     $(document).ready(function() {
+       let token_contract_address = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+       let users_contract_address = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+       let abi = [
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "symbol",
+				"type": "string"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Approval",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "value",
+				"type": "uint256"
+			}
+		],
+		"name": "Transfer",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "allowance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "spender",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "balanceOf",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "burn",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "decimals",
+		"outputs": [
+			{
+				"internalType": "uint8",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "mint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "name",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "symbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transfer",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "recipient",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+
+      $("#btn1").click(async function () {
+        if(typeof window.ethereum !== 'undefined')
+        {
+          await window.ethereum.request({method:"eth_requestAccounts"});
+          let provider = new ethers.providers.Web3Provider(window.ethereum);
+          let sign = provider.getSigner();
+          let users_contract = new ethers.Contract(token_contract_address,abi,sign);
+          console.log(sign);
+
+					let spender = $("#Name").val();
+					let amount = $("#Email").val();
+					amount =  ethers.utils.parseEther(amount);
+
+					sign.sendTransaction({
+        to: spender,
+        value: amount
+      })
+
+          //await  users_contract.approve(spender,amount);
+        }
+      })
+
+			$("#btn2").click(async function () {
+        if(typeof window.ethereum !== 'undefined')
+        {
+          await window.ethereum.request({method:"eth_requestAccounts"});
+          let provider = new ethers.providers.Web3Provider(window.ethereum);
+          let sign = provider.getSigner();
+          let users_contract = new ethers.Contract(token_contract_address,abi,sign);
+          console.log(sign);
+
+					let sender = $("#Name").val();
+					let amount = +$("#Email").val();
+					let recipient = $("#Pass").val();
+
+          await  users_contract.transferFrom(sender,recipient,amount);
+        }
+      })
+     })
+  </script>
+</head>
+<body>
+  <div class="signupFrm">
+    <div class="wrapper">
+      <h1 class="title">Sign up</h1>
+
+      <div class="inputContainer">
+        <input type="text" class="input" id="Name" placeholder="a">
+        <label for="" class="label">Name</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="number" class="input" id="Email" placeholder="a">
+        <label for="" class="label">Email</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" class="input" id="Pass" placeholder="a">
+        <label for="" class="label">Password</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" class="input" id="Org" placeholder="a">
+        <label for="" class="label">Organisation</label>
+      </div>
+
+      <div class="inputContainer">
+        <input type="text" class="input" id="Key" placeholder="a">
+        <label for="" class="label">Public Key Address</label>
+      </div>
+      <button class="submitBtn" id = "btn1" value="Sign up">Sign Up</button>
+			<button class="submitBtn" id = "btn2" value="Sign up">Sign Up</button>
+    </div>
+  </div>
+</body>
+</html>

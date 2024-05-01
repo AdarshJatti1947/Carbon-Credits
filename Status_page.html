@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Users/adarshjatti/Downloads/laurel/dist/css/AI.css">
+    <link rel="stylesheet" href="/Users/adarshjatti/Downloads/laurel/dist/css/status.css">
+
+    
+    
+    
+    <script>
+        function show_projects()
+        {
+            for(i=0;i<5;i++)
+            {
+                let user = document.createElement("tr");
+                user.classList.add("userMsg");
+
+                let Id = document.createElement("th");
+                Id.innerHTML="AAAAAAAAAAAA"//x[i].project_description
+                Id.classList.add("text1");
+
+                let Amount = document.createElement("th");
+                Amount.innerHTML="Aarav gggggggggggggggggg"//x[i].project_description
+                Amount.classList.add("text1");
+
+                let Project_Name = document.createElement("th");
+                Project_Name.innerHTML="Adarsh"//x[i].project_description
+                Project_Name.classList.add("description");
+
+                let Seller_Public_Key_Address = document.createElement("th");
+                Seller_Public_Key_Address.innerHTML="Venkat"//x[i].credits
+                Seller_Public_Key_Address.classList.add("description");
+
+                
+
+                let tablediv = document.getElementsByClassName("test1"); 
+                
+                user.appendChild(Id);
+                user.appendChild(Amount);
+                user.appendChild(Project_Name);
+                user.appendChild(Seller_Public_Key_Address);
+                
+
+                
+
+
+                tablediv[0].appendChild(user);
+                ind1 = 1;
+
+
+            }
+            
+        }
+    
+    </script>
+</head>
+<body>
+    <div class="search-container">
+            <button type="submit" class="status-button" onclick="show_projects()">Search</button>
+
+            
+        
+        <div>
+            <table class="test1">
+                <thead>
+                    <tr>
+                        <th>ID </th>
+                        <th>Amount</th>
+                        <th>Project Name</th>
+                        <th>Seller Public Key Address</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table content will be dynamically generated here -->
+                    <br>
+                    <br>
+                </tbody>
+            </table>
+        </div>       
+    </div>
+
+
+
+    
+
+
+
+    
+    
+
+   
+
+
+</body>
+<body>
+    <div class="textbox-container">
+        <div class="text-box">
+
+            <input type="text" class="search-box" name="query" placeholder="Enter order ID ">
+        </div>
+    
+    
+   
+        
+        <button type="submit" class="search-button" onclick="">Submit</button>
+
+    </div>
+    
+    
+</body>
+</html>

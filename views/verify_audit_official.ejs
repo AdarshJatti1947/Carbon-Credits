@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="wColumn1th=device-wColumn1th, initial-scale=1.0">
+    <!--<link rel="stylesheet" href="/Users/adarshjatti/Downloads/laurel/dist/css/AI.css">-->
+    <link rel="stylesheet" href="/css/status-1.css">
+
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <script>
+
+        $(document).ready(function (){
+            $("#submit").click(function (){
+                $.post(
+                "http://localhost:3000/official/getAudits",
+                {
+    
+                },
+                function (resp, status, xhr) {
+                  if(resp.status == 200)
+                  {
+                      show_projects(resp.data.requests);
+                  }
+                  else
+                  {
+                      alert(resp.data.message);
+                  }
+                }
+              );
+            })
+    
+    
+            $("#approve").click(function (){
+                $.post(
+                "http://localhost:3000/official/approveAudit",
+                {
+                  auditId: document.getElementById("AudtiId").value,
+                },
+                async function (resp, status, xhr) {
+                  if(resp.status == 200)
+                  {
+                      alert(resp.data.message)
+                  }
+                  else
+                  {
+                      alert(resp.data.message);
+                  }
+                }
+              );
+            })
+
+
+            $("#reject").click(function (){
+                $.post(
+                "http://localhost:3000/official/rejectAudit",
+                {
+                  auditId: document.getElementById("AudtiId").value,
+                  reasonWhy: document.getElementById("reasonWhy").value
+                },
+                async function (resp, status, xhr) {
+                  if(resp.status == 200)
+                  {
+                      alert(resp.data.message)
+                  }
+                  else
+                  {
+                      alert(resp.data.message);
+                  }
+                }
+              );
+            })
+    
+            
+        })
+    
+            function show_projects(requests)
+            {
+                let tablediv = document.getElementsByClassName("test1"); 
+                tablediv[0].innerHTML = "";
+    
+                let headers = document.createElement("thead");
+    
+                let row = document.createElement("tr");
+    
+                let title1 = document.createElement("th");
+                title1.innerHTML = "Audit Identification number";
+    
+                let title2 = document.createElement("th");
+                title2.innerHTML = "Electricity consumtion in Kwh";
+    
+                let title3 = document.createElement("th");
+                title3.innerHTML = "Documents for electricity consumption";
+    
+                let title4 = document.createElement("th");
+                title4.innerHTML = "Natural Gas Consumption in therms";
+    
+                let title5 = document.createElement("th");
+                title5.innerHTML = "Documents for Natural Gas Consumption";
+    
+                let title6 = document.createElement("th");
+                title6.innerHTML = "Oil Barrel Consumption in no. of barrels(136 to 138kg each)";
+    
+                let title7 = document.createElement("th");
+                title7.innerHTML = "Documents for Oil Barrel Consumption";
+    
+                let title8 = document.createElement("th");
+                title8.innerHTML = "Petrol Consumption in litres";
+    
+                let title9 = document.createElement("th");
+                title9.innerHTML = "Documents for Petrol Consumption";
+    
+                let title10 = document.createElement("th");
+                title10.innerHTML = "Diesel Consumption in litres";
+    
+                let title11 = document.createElement("th");
+                title11.innerHTML = "Documents for Diesel Consumption";
+
+                let title12 = document.createElement("th");
+                title12.innerHTML = "start date of audit";
+
+                let title13 = document.createElement("th");
+                title13.innerHTML = "End date of audit";
+    
+                let title14 = document.createElement("th");
+                title14.innerHTML = "Total emissions in metric ton CO2";
+    
+                row.appendChild(title1);
+                row.appendChild(title2);
+                row.appendChild(title3);
+                row.appendChild(title4);
+                row.appendChild(title5);
+                row.appendChild(title6);
+                row.appendChild(title7);
+                row.appendChild(title8);
+                row.appendChild(title9);
+                row.appendChild(title10);
+                row.appendChild(title11);
+                row.appendChild(title12);
+                row.appendChild(title13);
+                row.appendChild(title14);
+    
+                headers.appendChild(row);
+                tablediv[0].appendChild(headers);
+                for(i=0;i<requests.length;i++)
+                {
+      
+                    let user = document.createElement("tr");
+                    user.classList.add("userMsg");
+    
+                    let tableBody = document.createElement("tbody");
+    
+                    let Column1 = document.createElement("td");
+                    Column1.innerHTML= requests[i].id
+                    Column1.classList.add("text1");
+    
+                    let Column2 = document.createElement("td");
+                    Column2.innerHTML= requests[i].ElectricityConsumption;
+                    Column2.classList.add("text1");
+    
+                    let Column3 = document.createElement("td");
+                    Column3.innerHTML= requests[i].DocumentsElectricityConsumption;
+                    Column3.classList.add("description");
+    
+                    let Column4 = document.createElement("td");
+                    Column4.innerHTML= requests[i].NaturalGasConsumption;
+                    Column4.classList.add("description");
+    
+                    let Column5 = document.createElement("td");
+                    Column5.innerHTML= requests[i].DocumentsNaturalGasConsumption;
+                    Column5.classList.add("description");
+    
+                    let Column6 = document.createElement("td");
+                    Column6.innerHTML= requests[i].OilBarrelConsumption;
+                    Column6.classList.add("description");
+    
+                    let Column7 = document.createElement("td");
+                    Column7.innerHTML= requests[i].DocumentsOilBarrelConsumption;
+                    Column7.classList.add("description");
+    
+                    let Column8 = document.createElement("td");
+                    Column8.innerHTML= requests[i].PetrolConsumption;
+                    Column8.classList.add("description");
+    
+                    let Column9 = document.createElement("td");
+                    Column9.innerHTML= requests[i].DocumentsPetrolConsumption;
+                    Column9.classList.add("description");
+    
+                    let Column10 = document.createElement("td");
+                    Column10.innerHTML= requests[i].DieselConsumption;
+                    Column10.classList.add("description");
+    
+                    let Column11 = document.createElement("td");
+                    Column11.innerHTML= requests[i].DocumentsDieselConsumption;
+                    Column11.classList.add("description");
+
+                    let Column12 = document.createElement("td");
+                    Column12.innerHTML= requests[i].from;
+                    Column12.classList.add("description");
+
+                    let Column13 = document.createElement("td");
+                    Column13.innerHTML= requests[i].to;
+                    Column13.classList.add("description");
+    
+                    let Column14 = document.createElement("td");
+                    Column14.innerHTML= requests[i].totalConsumption;
+                    Column14.classList.add("description");
+                    
+    
+                    let tablediv = document.getElementsByClassName("test1"); 
+                    
+                    user.appendChild(Column1);
+                    user.appendChild(Column2);
+                    user.appendChild(Column3);
+                    user.appendChild(Column4);
+                    user.appendChild(Column5);
+                    user.appendChild(Column6);
+                    user.appendChild(Column7);
+                    user.appendChild(Column8);
+                    user.appendChild(Column9);
+                    user.appendChild(Column10);
+                    user.appendChild(Column11);
+                    user.appendChild(Column12);
+                    user.appendChild(Column13);
+                    user.appendChild(Column14);
+                    
+                    tablediv[0].appendChild(user);
+                    ind1 = 1;
+    
+    
+                }
+                
+            }
+        
+        </script>
+
+</head>
+<body>
+    <div class="search-container">
+            <button id="submit" class="status-button" >Search</button>
+
+            
+        
+        <div>
+            <table class="test1">
+                
+                <tbody>
+                    <!-- Table content will be dynamically generated here -->
+                    <br>
+                    <br>
+                </tbody>
+            </table>
+        </div>       
+    </div>
+
+
+    <div class="textbox-container">
+        <div class="text-box">
+
+            <input type="text" id= "AudtiId" class="search-box" name="query" placeholder="Enter the Audit ID">
+        </div>
+        
+    </div>
+
+    <div class="textbox-container">
+        <div class="text-box">
+
+            <input type="text" id="reasonWhy" class="search-box" name="query" placeholder="If rejecting then why">
+        </div>
+    
+   
+        
+        
+
+    </div>
+
+    
+
+    <div class="textbox-container">
+        <button id="approve" class="search-button" onclick="">Approve Audit</button>
+        
+        <button id="reject" class="search-button" onclick="">Reject Audit</button>
+    </div>
+    
+
+
+
+    
+
+
+
+    
+    
+
+   
+
+
+</body>
+
+</html>
