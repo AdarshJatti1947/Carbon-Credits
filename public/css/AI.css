@@ -1,13 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: url('/Users/adarshjatti/Downloads/laurel/dist/images/bg.jpg');
     margin: 0;
     padding: 0;
-    position: relative; /* Set position to relative */
-    min-height: 100vh;
+     /* Set position to relative */
+    background: #011b23;
+    font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
 }
 .search-container {
-    position: absolute; /* Set position to absolute */
+    position: relative; /* Set position to absolute */
     top: 20px; /* Adjust the top position */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Center horizontally */
@@ -65,7 +75,7 @@ body {
 /* text box here*/
 
 .textbox-container {
-    position: absolute;
+    position: relative;
     bottom: 20px; /* Adjust distance from the bottom */
     left: 0;
     width: 100%;
@@ -102,4 +112,40 @@ body {
     box-shadow: 0 0 5px rgba(0, 128, 0, 0.5); /* Shadow on focus */
   }
   
+  
+  
+
+ 
+  
+  table {
+    background: #e2dae1;
+    border-radius: 0.65em;
+    border-collapse: collapse;
+    margin: 1em;
+    position: relative;
+  }
+  th {
+    border-bottom: 1px solid #364043;
+    color: #10100f;
+    font-size: 0.85em;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    text-align: left;
+    border-radius: 1000px;
+  }
+  td {
+    color: #2a2626;
+    font-weight: 400;
+    padding: 0.65em 1em;
+    border-radius: 1000px;
+  }
+  .disabled td {
+    color: #202121;
+  }
+  tbody tr {
+    transition: background 0.25s ease;
+  }
+  tbody tr:hover {
+    background: #b4b8b9;
+  }
   

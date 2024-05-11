@@ -18,9 +18,10 @@
 }
 
 body {
-  /*background: url(/Users/adarshjatti/Downloads/laurel/dist/images/BLUE.jpeg);*/
+  /*background: url("./BLUE.jpeg");*/
   background-repeat: no-repeat;
   background-size: 2000px 1000px;
+  background: #061e32;
   font-family: 'Open Sans', sans-serif;
   display: flex;
   flex-direction: column;
@@ -48,6 +49,7 @@ td {
   border-radius: 1000px;
   width: 10px;
   word-break: break-all; /* Allow long words to break and wrap */
+  border-bottom: 1px solid black;
   
   
 }

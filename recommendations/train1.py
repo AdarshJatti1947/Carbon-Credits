@@ -50,10 +50,10 @@ def train():
 
 
 def fun1(prompt):
-  with open('D:/CAPSTONE-BACKEND/recommendations/meme-embeddings1.pkl','rb') as f:
+  with open('D:/CAPSTONE-BACKEND/meme-embeddings1.pkl','rb') as f:
     embeddings1=pickle.load(f)
 
-  with open('D:/CAPSTONE-BACKEND/recommendations/meme-embeddings2.pkl','rb') as f:
+  with open('D:/CAPSTONE-BACKEND/meme-embeddings2.pkl','rb') as f:
     embeddings2=pickle.load(f)
 
   prompt_embedding = model.encode(prompt, convert_to_tensor=True)
@@ -143,3 +143,4 @@ if sys.argv[1] == 'train':
 
 
 sys.stdout.flush()
+

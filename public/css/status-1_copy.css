@@ -18,9 +18,10 @@
 }
 
 body {
-  /*background: url(/Users/adarshjatti/Downloads/laurel/dist/images/BLUE.jpeg);*/
+  /*background: url(D:\CAPSTONE-BACKEND\public\css\BLUE.jpeg);*/
   background-repeat: no-repeat;
   background-size: 2000px 1000px;
+  background: #061e32;
   font-family: 'Open Sans', sans-serif;
   display: flex;
   flex-direction: column;
@@ -47,6 +48,7 @@ td {
   font-weight: 400;
   padding: 1em 1em;
   border-radius: 1000px;
+  border-bottom: 1px solid black;
  /* Allow long words to break and wrap */
   
   
